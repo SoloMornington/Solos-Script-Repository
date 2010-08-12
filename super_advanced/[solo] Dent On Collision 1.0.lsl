@@ -1,3 +1,17 @@
+// Dent On Collision
+// by Solo Mornington
+
+// This script makes the linked prims 'dent' when something runs
+// into them. This is accompanied by a particle effect which is
+// scaled roughly to the size of the prim.
+// After a certain number of 'dents,' the prim unlinks.
+
+// It's assumed that this script is in the root prim of the object.
+// As a consequence, the root prim won't ever 'dent.' This makes it
+// a good idea to add this script to a very small and unobtrusive
+// prim, and then link this new prim to the object to be dented.
+
+
 vector gScale; // scale of this prim. we store it so we don't have to ask a lot.
 float gLargest; // largest dimension
 string gTexture;
