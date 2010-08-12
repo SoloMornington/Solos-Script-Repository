@@ -8,61 +8,6 @@ float newTimerValue()
     //return 2.0;
 }
 
-
-vector objectSize()
-{
-	// since LSL hates us and won't just tell us the outside size of the object
-	// we have to do the math ourselves and add it all up.
-	integer i;
-	vector link_pos;
-	vector link_scale;
-	
-	integer count=llGetNumberOfPrims();
-	
-	// if there's only one prim, then we don't need to work very hard at all.
-	if (count < 1)
-	{
-		return llList2Vector(llGetPrimitiveParams([PRIM_SIZE]), 0);
-	}
-	
-	// gather some useful info....
-	vector rootPos = llGetRootPosition();
-	rotation rootRot = llGetRootRotation();
-	
-	list primPositions; // local positions relative to root, accounting for rotation
-	list primScales; // size of each prim.
-	
-	// first we load up primPositions....
-	for(i=1; link<=count; ++i)
-	{
-	    if (i==1)
-	    {
-	    	// root prim gets special treatment
-	    	primPositions += ZERO_VECTOR;
-	    	primScales += [llList2Vector(llGetLinkPrimitiveParams(i,[PRIM_SIZE]),0)];
-	    }
-	    else
-	    {
-		    //Get current link prim position and size
-		    link_pos=llList2Vector(llGetLinkPrimitiveParams(i,[PRIM_POSITION]),0);        
-		    link_scale=llList2Vector(llGetLinkPrimitiveParams(i,[PRIM_SIZE]),0);
-		    
-		    //Calculate local link prim position
-		    primPositions += [(link_pos-rootPos)/rootRot];
-		    // store the scale....
-		    primScales += [link_scale];
-		}
-	}
-	// now we loop through the prims and compare them to each other
-	vector min = 
-	vector max;
-	count = llGetListLength(primPositions);
-	for (i=1; i<count; ++i)
-	{
-	}
-}
-
-
 setupVehicle()
 {
 	// this function re-initializes the phyysics and vehicle parameters
@@ -77,6 +22,9 @@ setupVehicle()
     // we want hover height to be determined by the object bounding box
     // this assumes this script is in the root prim, which is probably a safe
     // assumption. but it's still an assumption.
+    // the bounding box is a very imprecise way to get the outside dimensions
+    // of an object. But we'll use this because it's easy, not because it's
+    // right.
     list bbox = llGetBoundingBox(llGetKey());
     vector bboxVector = llList2Vector(bbox, 1) - llList2Vector(bbox,0);
     float bboxOffset = bboxVector.z * 0.3;
@@ -88,7 +36,6 @@ setupVehicle()
     llSetVehicleFloatParam(VEHICLE_ANGULAR_MOTOR_DECAY_TIMESCALE, 0.5);
     llSetVehicleFloatParam(VEHICLE_ANGULAR_MOTOR_TIMESCALE, 0.3);
 }
-
 
 default
 {

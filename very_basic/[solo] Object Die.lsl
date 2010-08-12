@@ -15,9 +15,6 @@
 // Being evil.
 // Being good.
 
-// This comment added in order to test git.
-
-
 default
 {
 	state_entry()
