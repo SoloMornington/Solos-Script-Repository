@@ -1,6 +1,14 @@
 // Walk-Thru Play Sound
 // by Solo Mornington
 
+// THIS NOTICE MUST REMAIN INTACT:
+// Copyright 2010, Solo Mornington
+// License: Use freely in any way you want. Modified versions
+// may be used in any way. No credit or acknowledgement required.
+// Definitive source and updates available here:
+// http://github.com/SoloMornington/Solos-Script-Repository
+// ** end notice
+
 // This is a dead-simple script. :-)
 // It will turn the object phantom and play a sound when an avatar travels through
 // the object. This demonstrates the way llVolumeDetect works.

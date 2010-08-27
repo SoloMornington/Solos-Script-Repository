@@ -1,6 +1,14 @@
 // Drink Your Tea
 // by Solo Mornington
 
+// THIS NOTICE MUST REMAIN INTACT:
+// Copyright 2010, Solo Mornington
+// License: Use freely in any way you want. Modified versions
+// may be used in any way. No credit or acknowledgement required.
+// Definitive source and updates available here:
+// http://github.com/SoloMornington/Solos-Script-Repository
+// ** end notice
+
 // Based on a script called Drink by Francis Chung
 // Gutted and gussied-up by Solo Mornington in June, 2008
 // If you improve this, please let me know how. :-)

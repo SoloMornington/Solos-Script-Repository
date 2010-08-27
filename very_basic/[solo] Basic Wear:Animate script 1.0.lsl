@@ -1,5 +1,14 @@
 // BASIC WEAR/ANIMATE SCRIPT 1.0
 // by Solo Mornington
+
+// THIS NOTICE MUST REMAIN INTACT:
+// Copyright 2010, Solo Mornington
+// License: Use freely in any way you want. Modified versions
+// may be used in any way. No credit or acknowledgement required.
+// Definitive source and updates available here:
+// http://github.com/SoloMornington/Solos-Script-Repository
+// ** end notice
+
 // A very basic framework script for others to modify
 // hopefully illustrating some best-practices
 //

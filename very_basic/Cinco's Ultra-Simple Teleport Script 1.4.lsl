@@ -1,5 +1,14 @@
 // Cinco's Teleporter 1.3
 // 
+
+// THIS NOTICE MUST REMAIN INTACT:
+// Copyright 2010, Cinco Pizzicato
+// License: Use freely in any way you want. Modified versions
+// may be used in any way. No credit or acknowledgement required.
+// Definitive source and updates available here:
+// http://github.com/SoloMornington/Solos-Script-Repository
+// ** end notice
+
 // a very basic teleporter script by Cinco Pizzicato, totally ripped and mangled from
 // Teleporter Script  v 3.0 by Asira Sakai
 //

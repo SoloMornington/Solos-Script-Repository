@@ -1,6 +1,14 @@
 // Proximity Alpha
 // by Cinco Pizzicato
 
+// THIS NOTICE MUST REMAIN INTACT:
+// Copyright 2010, Cinco Pizzicato
+// License: Use freely in any way you want. Modified versions
+// may be used in any way. No credit or acknowledgement required.
+// Definitive source and updates available here:
+// http://github.com/SoloMornington/Solos-Script-Repository
+// ** end notice
+
 // A sensor that changes the alpha transparency of an object.
 
 // Change this number to a new distance to tweak the behavior:
