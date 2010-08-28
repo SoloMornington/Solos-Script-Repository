@@ -71,7 +71,7 @@ default
             }
         }
         else
-            // There was no notecard, so tell the user.
+            // There was nothing to give, so tell the user.
             llSay(0, "This object has nothing to give you. Please contact its owner.");
     }
 }
