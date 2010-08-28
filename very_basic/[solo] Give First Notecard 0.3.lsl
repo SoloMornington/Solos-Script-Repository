@@ -40,7 +40,7 @@ default
             // loop through all the touch_starts.
             // usually this is extraneous work, but it does matter.
             integer i;
-            for (i=0; i < total_number; i++)
+            for (i=0; i < total_number; ++i)
             {
                 llGiveInventory(llDetectedKey(i), notecard);
             }
