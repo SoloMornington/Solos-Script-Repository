@@ -15,7 +15,7 @@
 // It is the big brother to the Give First Notecard script in the
 // very_basic folder of this repository.
 
-// UPDATE: v.20 has some basic usability improvements. It imposes a few
+// UPDATE: v.2.0 has some basic usability improvements. It imposes a few
 // rules for the benefit of anyone who has to maintain a giver kiosk:
 // * If you add a script to the object inventory, it will warn you
 //   that this is a bad idea.
@@ -25,8 +25,8 @@
 // pass. Changing the object inventory will cause the checks to be
 // performed again.
 
-// This string is the text of the hover text. 
 
+// This string is the text of the hover text. 
 string gHoverText = "Touch for some goodies!";
 
 default
