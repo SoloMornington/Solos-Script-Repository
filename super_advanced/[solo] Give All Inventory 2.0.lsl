@@ -51,65 +51,65 @@ state errorCheck
 	{
 		// first check for scripts
 		// we get a count of scrips in this object
-        integer count = llGetInventoryNumber(INVENTORY_SCRIPT);
-        // there should be one script (this one). any more than that
-        // is a bad idea.
-        if (count > 1)
-        {
-            llOwnerSay("It's a terrible idea to distribute scripts through a kiosk. Please remove scripts other than '" + llGetScriptName() + "' and try again. (Copying and pasting a script to a notecard is a reasonable way to work around this.)");
-            state vend;
-        }
-        // next we check for permissions on each item.
-        // we're interested in copy and trans, so we'll set up a variable for that
+		integer count = llGetInventoryNumber(INVENTORY_SCRIPT);
+		// there should be one script (this one). any more than that
+		// is a bad idea.
+		if (count > 1)
+		{
+		    llOwnerSay("It's a terrible idea to distribute scripts through a kiosk. Please remove scripts other than '" + llGetScriptName() + "' and try again. (Copying and pasting a script to a notecard is a reasonable way to work around this.)");
+		    state vend;
+		}
+		// next we check for permissions on each item.
+		// we're interested in copy and trans, so we'll set up a variable for that
 		integer PERM_COPYTRANS = (PERM_COPY | PERM_TRANSFER);
 		// some variables we'll need...
-        integer ownerPerms;
-        string itemName;
-        list badPerms;
-        integer i;
-        // we want to get this script's name, so we can exclue it from
-        // the permission check.
-        string scriptName = llGetScriptName();
-        // how many items in inventory?
-        count = llGetInventoryNumber(INVENTORY_ALL);
-        // we loop through all the items.
-        for (i=0; i<count; ++i)
-        {
-        	// gather the name of an item...
-            itemName = llGetInventoryName(INVENTORY_ALL, i);
-            // we don't want to include this script in the check
-            if (itemName != scriptName)
-            {
-            	// ok, we want to find out if the current owner has copy/trans
-            	// permissions. so we query for the item, with MASK_OWNER.
-                ownerPerms = llGetInventoryPermMask(itemName, MASK_OWNER);
-                // ownerPerms now has a bitmap of which perms the owner has.
-                // since we want to make sure it has the PERM_COPYTRANS bits,
-                // we have to do this rather strange-looking logic:
-                if (! ((ownerPerms & PERM_COPYTRANS) == PERM_COPYTRANS))
-                {
-                	// OK, so this item does not have copy or trans for the
-                	// current owner, so we put it in the badPerms list.
-                    badPerms += [itemName];
-                }
-            }
-        }
-        // we've looped through all the inventory items, and put the 'bad' ones
-        // in the badPerms list. Now we tell the user about the bad ones.
-        // It's easy to check if there are any bad objects, because if there
-        // aren't, badPerms won't have any items in it. so our first question is:
-        // how many items in that list?
-        count = llGetListLength(badPerms);
-        if (count > 0)
-        {
-	        // more than none, so we have to tell the user.
-            llOwnerSay("You do not have copy/trans permission for the following items: " + llDumpList2String(badPerms, ", "));
-            state vend;
-        }
-        // OK so if we made it this far, there's probably nothing wrong with
-        // object inventory.
-        llOwnerSay("Congratulations. Your vendor does not contain scripts, and all items are copyable and transferrable.");
-        state vend;
+		integer ownerPerms;
+		string itemName;
+		list badPerms;
+		integer i;
+		// we want to get this script's name, so we can exclue it from
+		// the permission check.
+		string scriptName = llGetScriptName();
+		// how many items in inventory?
+		count = llGetInventoryNumber(INVENTORY_ALL);
+		// we loop through all the items.
+		for (i=0; i<count; ++i)
+		{
+			// gather the name of an item...
+		    itemName = llGetInventoryName(INVENTORY_ALL, i);
+		    // we don't want to include this script in the check
+		    if (itemName != scriptName)
+		    {
+		    	// ok, we want to find out if the current owner has copy/trans
+		    	// permissions. so we query for the item, with MASK_OWNER.
+		        ownerPerms = llGetInventoryPermMask(itemName, MASK_OWNER);
+		        // ownerPerms now has a bitmap of which perms the owner has.
+		        // since we want to make sure it has the PERM_COPYTRANS bits,
+		        // we have to do this rather strange-looking logic:
+		        if (! ((ownerPerms & PERM_COPYTRANS) == PERM_COPYTRANS))
+		        {
+		        	// OK, so this item does not have copy or trans for the
+		        	// current owner, so we put it in the badPerms list.
+		            badPerms += [itemName];
+		        }
+		    }
+		}
+		// we've looped through all the inventory items, and put the 'bad' ones
+		// in the badPerms list. Now we tell the user about the bad ones.
+		// It's easy to check if there are any bad objects, because if there
+		// aren't, badPerms won't have any items in it. so our first question is:
+		// how many items in that list?
+		count = llGetListLength(badPerms);
+		if (count > 0)
+		{
+		    // more than none, so we have to tell the user.
+		    llOwnerSay("You do not have copy/trans permission for the following items: " + llDumpList2String(badPerms, ", "));
+		    state vend;
+		}
+		// OK so if we made it this far, there's probably nothing wrong with
+		// object inventory.
+		llOwnerSay("Congratulations. Your vendor does not contain scripts, and all items are copyable and transferrable.");
+		state vend;
 	}
 }
 
