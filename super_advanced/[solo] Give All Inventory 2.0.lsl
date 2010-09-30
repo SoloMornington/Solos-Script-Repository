@@ -72,6 +72,14 @@ state errorCheck
 		string scriptName = llGetScriptName();
 		// how many items in inventory?
 		count = llGetInventoryNumber(INVENTORY_ALL);
+		// do we even need to do this check?
+		// if count is < 2 (1 for this script, plus any one item)
+		// then there are no freebies to vend.
+		if (count < 2)
+		{
+			llOwnerSay("This vendor does not contain any items to give away.");
+			state vend;
+		}
 		// we loop through all the items.
 		for (i=0; i<count; ++i)
 		{
