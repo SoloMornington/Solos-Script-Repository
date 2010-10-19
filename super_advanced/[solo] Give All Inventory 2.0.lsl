@@ -32,7 +32,7 @@ string gHoverText = "Touch for some goodies!";
 default
 {
 	// 'default' is a vague name, so we just switch right over to
-	// state 'error check.'
+	// state errorCheck.
 	state_entry()
 	{
 		state errorCheck;
@@ -56,7 +56,7 @@ state errorCheck
 		// is a bad idea.
 		if (count > 1)
 		{
-		    llOwnerSay("It's a terrible idea to distribute scripts through a kiosk. Please remove scripts other than '" + llGetScriptName() + "' and try again. (Copying and pasting a script to a notecard is a reasonable way to work around this.)");
+		    llOwnerSay("*** It's a terrible idea to distribute scripts through a kiosk. Please remove scripts other than '" + llGetScriptName() + "' and try again. (Copying and pasting a script to a notecard is a reasonable way to work around this.)");
 		    state vend;
 		}
 		// next we check for permissions on each item.
@@ -77,7 +77,7 @@ state errorCheck
 		// then there are no freebies to vend.
 		if (count < 2)
 		{
-			llOwnerSay("This vendor does not contain any items to give away.");
+			llOwnerSay("*** This vendor does not contain any items to give away.");
 			state vend;
 		}
 		// we loop through all the items.
@@ -111,12 +111,12 @@ state errorCheck
 		if (count > 0)
 		{
 		    // more than none, so we have to tell the user.
-		    llOwnerSay("You do not have copy/trans permission for the following items: " + llDumpList2String(badPerms, ", "));
+		    llOwnerSay("*** You do not have copy/trans permission for the following items:\n - " + llDumpList2String(badPerms, ",\n - "));
 		    state vend;
 		}
 		// OK so if we made it this far, there's probably nothing wrong with
 		// object inventory.
-		llOwnerSay("Congratulations. Your vendor does not contain scripts, and all items are copyable and transferrable.");
+		llOwnerSay("*** Congratulations. Your vendor does not contain scripts, and all items are copyable and transferrable.");
 		state vend;
 	}
 }
@@ -172,7 +172,7 @@ state vend
         }
         else
             // There was nothing to give, so tell the user.
-            llSay(0, "This object has nothing to give you. Please contact its owner.");
+            llSay(0, "*** This object has nothing to give you. Please contact its owner.");
     }
     
     changed(integer what)
