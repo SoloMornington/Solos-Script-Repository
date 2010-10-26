@@ -47,7 +47,9 @@ default
             	avSat();
             }
             // regardless of whether we did the callback function,
-            // we have to update the global av count.
+            // we can update the global av count. this is easier
+            // and probably quicker than figuring out if the new number is
+            // different from the global one.
             gAvCount = currentAvCount;
         }
     }
