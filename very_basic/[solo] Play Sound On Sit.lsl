@@ -27,6 +27,9 @@ default
     state_entry()
     {
         // store the current number of avs sitting on the object.
+        // llGetNumberOfPrims() returns the number of linked items, including
+        // seated avatars. llGetObjectPrimCount() includes only prims. Thus
+        // the difference between them is the number of seated avatars.
         gAvCount = llGetNumberOfPrims() - llGetObjectPrimCount(llGetKey());
     }
     
