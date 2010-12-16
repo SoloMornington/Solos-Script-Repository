@@ -19,7 +19,14 @@ avSat()
 	// this function is the callback function that gets called
 	// whenever a new av sits on the object.
 	// You can change this. For now, however, it's a fart sound:
-	llPlaySound("900bdb8a-a208-1c9b-c08e-c67016bf3069", 1.0);
+	llLoopSound("900bdb8a-a208-1c9b-c08e-c67016bf3069", 1.0);
+}
+
+avUnsat()
+{
+	// this function is the callback that gets called
+	// whenever an av gets up off the object.
+	llStopSound();
 }
 
 default
@@ -38,6 +45,7 @@ default
         if (what & CHANGED_LINK)
         {
             // either the owner edited the object, or an av got up or sat down
+            // figure out the av count... see state_entry for explanation.
             integer currentAvCount = llGetNumberOfPrims() - llGetObjectPrimCount(llGetKey());
             if (currentAvCount > gAvCount)
             {
@@ -45,6 +53,13 @@ default
             	// we want to do something. we'll use this callback function
             	// for modularity.
             	avSat();
+            }
+            else if (currentAvCount < gAvCount)
+            {
+            	// the number of seated avatars has decreased
+            	// so we want to do something. we'll use the callback for
+            	// unseated avatars....
+            	avUnsat();
             }
             // regardless of whether we did the callback function,
             // we can update the global av count. this is easier
