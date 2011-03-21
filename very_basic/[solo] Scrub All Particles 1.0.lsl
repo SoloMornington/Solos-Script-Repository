@@ -22,31 +22,31 @@ killAllParticles()
 {
 	// primCount tells us how many prims there are
 	integer primCount = llGetObjectPrimCount(llGetKey());
-    if (primCount == 1)
-    {
-        // Only one prim to deal with, and that prim is the one we're in.
-        // So therefore we can just call llParticleSystem().
-        llParticleSystem([]);
-    }
-    else
-    {
-    	// more than one prim, so we loop through all the prims and 
-    	// scrub the particles.
-        integer i;
-        for (i=1; i<= primCount; ++i)
-        {
-        	// scrub the particles...
-            llLinkParticleSystem(i, []);
-        }
-    }
+	if (primCount == 1)
+	{
+		// Only one prim to deal with, and that prim is the one we're in.
+		// So therefore we can just call llParticleSystem().
+		llParticleSystem([]);
+	}
+	else
+	{
+		// more than one prim, so we loop through all the prims and 
+		// scrub the particles.
+		integer i;
+		for (i=1; i<= primCount; ++i)
+		{
+			// scrub the particles...
+			llLinkParticleSystem(i, []);
+		}
+	}
 }
 
 // Now we address when to scrub the particles.
 default
 {
-    state_entry()
-    {
-    	// Clearly we want to scrub the particles on state_entry...
-    	killAllParticles();
-    }
+	state_entry()
+	{
+		// Clearly we want to scrub the particles on state_entry...
+		killAllParticles();
+	}
 }
