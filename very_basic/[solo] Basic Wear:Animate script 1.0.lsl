@@ -22,7 +22,10 @@
 // put this script in an object. this script should be in the root prim of the object
 // change the next line to reflect the name of the animation you want to play
 
-string gAnimationName = "motorcycle sit"; // what animation to play?
+list gAnimations = [
+    "[solo] karakasa spine lock",
+    "[solo] shoulders up"
+    ]; // what animation to play?
 
 // NOTE: I use a naming convention of putting g at the start of any
 // global variable. This makes it easier to see which variables have
@@ -41,9 +44,13 @@ default
         // user might reset it while wearing it, let's figure out if we're attached....
         if (llGetAttached())
         {
-            // yes, we're attached, so we ask for permissions
-            // which starts the whole cascade of permissions being given and animation-playing
-            llRequestPermissions(llGetOwner(), PERMISSION_TRIGGER_ANIMATION);
+            // yes, we're attached, so we ask for permission to play animations.
+            // which starts the whole cascade of permissions being given and
+            // animation-playing. we also request the ability to take over the
+            // controls, so that this script will stand a better chance of running
+            // in no-script areas.
+            llRequestPermissions(llGetOwner(),
+                PERMISSION_TRIGGER_ANIMATION | PERMISSION_TAKE_CONTROLS);
         }
     }
 
@@ -64,7 +71,19 @@ default
         if (perm & PERMISSION_TRIGGER_ANIMATION)
         {
             // yay we got permission, so let's start animating:
-            llStartAnimation(gAnimationName);
+            integer i;
+            integer count = llGetListLength(gAnimations);
+            for(i=0; i<count; ++i)
+            {
+                llStartAnimation(llList2String(gAnimations, i));
+            }
+        }
+        if (perm & PERMISSION_TAKE_CONTROLS)
+        {
+            // we only want to take control so the script keeps working
+            // in no-script areas. so we don't accept anything and pass
+            // on everything
+            llTakeControls(CONTROL_ML_LBUTTON, FALSE, TRUE);
         }
     }
 
@@ -85,7 +104,12 @@ default
             // stopping the animation
             if (llGetPermissions() & PERMISSION_TRIGGER_ANIMATION)
             {
-                llStopAnimation(gAnimationName); // stop the animation
+                integer i;
+                integer count = llGetListLength(gAnimations);
+                for(i=0; i<count; ++i)
+                {
+                    llStopAnimation(llList2String(gAnimations, i));
+                }
             }
         }
     }
