@@ -4,11 +4,6 @@ The goal of this script repository is twofold:
 
 2) Provide USEFULLY COMMENTED scripts to those same communities.
 
-Originally, there were only two categories: super_advanced and very_basic. I've added utilitarian, because there are some scripts everyone should have, such as particle scrubber scripts and megaprim deleters.
-
-
 There are two main categories: super_advanced and very_basic. This is because there are only two types of LSL scripts: Super advance or very basic. That's the nature of LSL: The script will either be obvious or require a bunch of learning and reference.
 
 These two categories encourage anyone who contributes to comment their script. Either the script is so basic that newbies will be reading it, and therefore it should be commented so they can understand it, or the script is so advanced that advanced scripters will be scratching their heads and wishing you had commented more.
-
-There is another third category: Utilitarian. There are some scripts everyone should have, such as particle scrubber scripts and megaprim deleters.
