@@ -10,6 +10,8 @@
 // will be preloaded. Alternately, you could use it to preload textures
 // in an environment of some sort.
 
+float gInterval = 23.0; // How long before we switch to the next texture?
+
 list gTextures; // list of texures in prim inventory
 integer gTexturePointer = 0; // which of gTextures is the texture for the 0th face?
 
@@ -58,7 +60,7 @@ default
         // next paint the textures on all the sides
         applyFaceTextures();
         // finally set up the timer interval.
-        llSetTimerEvent(23.0);
+        llSetTimerEvent(gInterval);
     }
     
     changed(integer what)
