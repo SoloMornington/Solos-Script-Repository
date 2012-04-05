@@ -1,5 +1,4 @@
-// Cinco's Teleporter 1.3
-// 
+// Cinco's Teleporter 2.0
 
 // THIS NOTICE MUST REMAIN INTACT:
 // Copyright 2010, Cinco Pizzicato
