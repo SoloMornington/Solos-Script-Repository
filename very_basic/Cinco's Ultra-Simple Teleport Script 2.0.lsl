@@ -12,9 +12,6 @@
 // a very basic teleporter script by Cinco Pizzicato, totally ripped and mangled from
 // Teleporter Script  v 3.0 by Asira Sakai
 //
-// also uses WarpPos, which you should already know about if you do any LSL coding.
-// http://lslwiki.net/lslwiki/wakka.php?wakka=LibraryWarpPos
-//
 // no notecards, no hard-coding. HOW TO:
 
 // 1) The name of the prim will be it's hover text.
@@ -29,20 +26,10 @@
 
 // 3) You'll probably need to make another prim for the return voyage.
 
-// 4) This script really should be compiled as Mono, so warpPos
-// doesn't cause a heap error.
+// updates for v.2.0: Now using the new llSetRegionPos() function.
+// http://wiki.secondlife.com/wiki/LlSetRegionPos
 
 vector gHomeVector; // where I should go back; updated every teleport
-
-warpPos(vector pos)
-{
-    // by Riden Blaisdale, source: http://lslwiki.net/lslwiki/wakka.php?wakka=LibraryWarpPos
-    list rules;
-    integer num = llRound(llVecDist(llGetPos(),pos)/10)+1;
-    integer x;
-    for(x=0; x<num; ++x) rules=(rules=[])+rules+[PRIM_POSITION,pos];
-    llSetPrimitiveParams(rules);
-}
 
 default
 {
@@ -71,12 +58,21 @@ default
                 {
                     llSetStatus(STATUS_PHANTOM,TRUE);
                     gHomeVector = llGetPos();  // record current position for return
-                    warpPos(targetVector);  // teleport to selected coordinates
-                    llUnSit(llAvatarOnSitTarget()); // unsit him
-                    warpPos(gHomeVector);  // teleport back to old position
+                    if (llSetRegionPos(targetVector))
+                    {
+                    	// the teleporter moved to the target
+	                    llUnSit(llAvatarOnSitTarget()); // unsit him
+	                    llSetRegionPos(gHomeVector);  // teleport back to old position
+                    }
+                    else
+                    {
+                    	// teleporter didn't go where it should have.
+	                    llUnSit(llAvatarOnSitTarget()); // unsit him
+		                llOwnerSay("This teleporter was unable to move to the destination.");
+                    }
                     llSetStatus(STATUS_PHANTOM,FALSE);
                 }
-                else llOwnerSay("Bad, bad vector.");
+                else llOwnerSay("This teleporter has a bad destination in its description.");
             }
             // if someone links the object, we reset the script.
             else llResetScript();
