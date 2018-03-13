@@ -31,28 +31,28 @@ particleCloud(integer link, float mag)
 	// this function makes a cloud of 'dust' for the given linked prim.
 	// mag is the amount of time the emitter should produce dust particles.
     float startScale = gLargest * 0.07; // arbitrary constant. adjust for aesthetics.
-    llLinkParticleSystem( link, [ 
-		PSYS_SRC_TEXTURE, gTexture, 
+    llLinkParticleSystem( link, [
+		PSYS_SRC_TEXTURE, gTexture,
 		PSYS_PART_START_SCALE, <startScale, startScale, 0>,
-		PSYS_PART_END_SCALE, <gLargest, gLargest, 0>, 
+		PSYS_PART_END_SCALE, <gLargest, gLargest, 0>,
 		PSYS_PART_START_COLOR, <.5,.5,.5>,
-		PSYS_PART_END_COLOR, <.1,.1,.1>, 
+		PSYS_PART_END_COLOR, <.1,.1,.1>,
 		PSYS_PART_START_ALPHA, .8,
-		PSYS_PART_END_ALPHA, .0,     
-		PSYS_SRC_BURST_PART_COUNT, 1, 
-		PSYS_SRC_BURST_RATE,  0.2,  
-		PSYS_PART_MAX_AGE, 2.0, 
+		PSYS_PART_END_ALPHA, .0,
+		PSYS_SRC_BURST_PART_COUNT, 1,
+		PSYS_SRC_BURST_RATE,  0.2,
+		PSYS_PART_MAX_AGE, 2.0,
 		PSYS_SRC_MAX_AGE, mag,  // <-- mag
 		PSYS_SRC_PATTERN, 8,
 		PSYS_SRC_ACCEL, <0.0,0.0,.2>,
-		PSYS_SRC_BURST_SPEED_MIN, 0.01,   PSYS_SRC_BURST_SPEED_MAX, 0.2, 
+		PSYS_SRC_BURST_SPEED_MIN, 0.01,   PSYS_SRC_BURST_SPEED_MAX, 0.2,
 		PSYS_SRC_ANGLE_BEGIN,  15*DEG_TO_RAD,
-		PSYS_PART_FLAGS, ( 0      
-	        | PSYS_PART_INTERP_COLOR_MASK   
-	        | PSYS_PART_INTERP_SCALE_MASK   
-	        | PSYS_PART_EMISSIVE_MASK   
+		PSYS_PART_FLAGS, ( 0
+	        | PSYS_PART_INTERP_COLOR_MASK
+	        | PSYS_PART_INTERP_SCALE_MASK
+	        | PSYS_PART_EMISSIVE_MASK
 	        | PSYS_PART_FOLLOW_VELOCITY_MASK
-	        | PSYS_PART_WIND_MASK            
+	        | PSYS_PART_WIND_MASK
 	        | PSYS_PART_BOUNCE_MASK
 		) ]
 	);
@@ -127,7 +127,7 @@ default
     {
         llRequestPermissions(llGetOwner(), PERMISSION_CHANGE_LINKS);
     }
-    
+
     run_time_permissions(integer perms)
     {
 	    if (perms & PERMISSION_CHANGE_LINKS)
@@ -147,7 +147,7 @@ state waiting
     	// this could be much more secure.
         llListen(23, "", NULL_KEY, "dent");
     }
-    
+
     listen(integer channel, string name, key id, string message)
     {
     	// get the object details and discover if we have the same owner
@@ -233,7 +233,7 @@ state denting
             }
         }
     }
-    
+
     changed(integer change)
     {
         if (change & CHANGED_LINK)

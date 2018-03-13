@@ -43,7 +43,7 @@ default
         // and a nice sit text, which is completely ignored by viewer 2.
         llSetSitText("Teleport");
         // make sure no one's sitting.....
-        llUnSit(llAvatarOnSitTarget()); 
+        llUnSit(llAvatarOnSitTarget());
     }
 
     changed(integer change)

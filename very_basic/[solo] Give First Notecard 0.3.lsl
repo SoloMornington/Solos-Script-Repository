@@ -27,13 +27,13 @@ default
     state_entry()
     {
         // Set up the hover text....
-        llSetText(gHoverText, <1,1,1>, 1.0);
+        //llSetText(gHoverText, <1,1,1>, 1.0);
     }
 
     touch_start(integer total_number)
     {
         // Get the name of the first notecard
-        string notecard = llGetInventoryName(INVENTORY_NOTECARD, 0);
+        string notecard = llGetInventoryName(INVENTORY_LANDMARK, 0);
         // If the name isn't empty....
         if (notecard != "")
         {
@@ -47,6 +47,6 @@ default
         }
         else
             // There was no notecard, so tell the user.
-            llSay(0, "There is no notecard to give. Please contact the owner of this object.");
+            llSay(0, "There is no landmark to give. Please contact the owner of this object.");
     }
 }
