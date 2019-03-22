@@ -57,7 +57,6 @@ state errorCheck
 		if (count > 1)
 		{
 		    llOwnerSay("*** It's a terrible idea to distribute scripts through a kiosk. Please remove scripts other than '" + llGetScriptName() + "' and try again. (Copying and pasting a script to a notecard is a reasonable way to work around this.)");
-		    state vend;
 		}
 		// next we check for permissions on each item.
 		// we're interested in copy and trans, so we'll set up a variable for that
